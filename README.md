@@ -159,29 +159,11 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
 
 ### Infra & Cloud
 
-<img src="https://img.shields.io/badge/AWS EC2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white"> <img src="https://img.shields.io/badge/AWS S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white"> <img src="https://img.shields.io/badge/AWS CloudFront-FF9900?style=for-the-badge&logo=amazon-cloudfront&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+<img src="https://img.shields.io/badge/AWS EC2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white"> <img src="https://img.shields.io/badge/AWS RDS-527FFF?style=for-the-badge&logo=amazon-rds&logoColor=white"> <img src="https://img.shields.io/badge/AWS S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white">  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 
 ### Environment & Collaboration
 
 <img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudio&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> <img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
-
-<br>
-
-## 📌 배포
-
-https://d2f2dhfyp3k73e.cloudfront.net/
-<br><br>
-*데모 계정
-<br>
-ID : dinosaur7656@gmail.com
-<br>
-PW : abcd1234
-<br><br>
-*관리자 데모 계정 (읽기 전용)
-<br>
-ID : admin_demo@bidnbuy.com
-<br>
-PW : admin123
 
 <br>
 
@@ -395,20 +377,6 @@ PW : admin123
 
 <br>
 
-## 🔧 추후 개선 방안
-
-### 기능 추가 및 보완
-
-- 직거래를 위한 지도 기능 구현
-- 판매 상태 관리 로직 개선
-
-### 테스트 및 성능
-
-- 부하 테스트 진행
-- 성능 최적화 (쿼리, 렌더링 등)
-- Redis 확장 및 운영 관리
-
-<br>
 
 ## 📄 관련 문서
 
