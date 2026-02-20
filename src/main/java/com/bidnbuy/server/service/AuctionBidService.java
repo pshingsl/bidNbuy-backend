@@ -50,26 +50,24 @@ public class AuctionBidService {
 
         // 경매가 진행 중인지 확인
         if (auctionProduct.getSellingStatus() != SellingStatus.PROGRESS) {
-            throw new RuntimeException("AUCTION_NOT_IN_PROGRESS, 현재 입찰이 불가능합니다. 경매가 진행 중이 아닙니다.");
-            // AUCTION_NOT_IN_PROGRESS, 현재 입찰이 불가능합니다. 경매가 진행 중이 아닙니다.
+            throw new CustomException(ErrorCode.AUCTION_NOT_IN_PROGRESS);
         }
 
         // 경매 끝났을때 입찰 막기
         LocalDateTime now = LocalDateTime.now();
         if (now.isAfter(auctionProduct.getEndTime())) {
-            throw new RuntimeException("AUCTION_ENDED, 이미 경매가 종료된 물품입니다.");
-            //AUCTION_ENDED, 이미 경매가 종료된 물품입니다.
+            throw new CustomException(ErrorCode.EXPIRED_AUCTION_TIME);
         }
 
         // 사용자의 최소 입찰 금애이 현재 입찰 금액 비교
         Integer minBid = auctionProduct.getCurrentPrice() + auctionProduct.getMinBidPrice();
         if (bidPrice < minBid) {
-            throw new RuntimeException("입찰 금액이 최소 입찰 단위(" + auctionProduct.getMinBidPrice() + "원)를 충족하지 못합니다. 최소 입찰 금액은 " + minBid + "원 이상입니다.");
+            throw new CustomException(ErrorCode.INVALID_MIN_BID);
         }
 
         // 동시성 안전 최고가 체크
         if (bidPrice <= auctionProduct.getCurrentPrice()) {
-            throw new RuntimeException("CURRENT_HIGHEST_BID_EXISTS, 이미 더 높은 입찰이 존재합니다.");
+            throw new CustomException(ErrorCode.LOWER_THAN_CURRENT_PRICE);
         }
 
         // 3 DB에 저장
