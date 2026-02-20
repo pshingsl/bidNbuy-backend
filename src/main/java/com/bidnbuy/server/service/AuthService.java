@@ -4,17 +4,15 @@ import com.bidnbuy.server.dto.*;
 import com.bidnbuy.server.entity.RefreshTokenEntity;
 import com.bidnbuy.server.entity.UserEntity;
 import com.bidnbuy.server.enums.AuthStatus;
-import com.bidnbuy.server.exception.CustomAuthenticationException;
+import com.bidnbuy.server.enums.ErrorCode;
+import com.bidnbuy.server.exception.CustomException;
 import com.bidnbuy.server.repository.UserRepository;
 import com.bidnbuy.server.security.JwtProvider;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.Optional;
 
@@ -43,20 +41,20 @@ public class AuthService {
             Optional<UserEntity> deletedUserOptional = userRepository.findByEmailWithDeleted(email);
             if(deletedUserOptional.isPresent() && deletedUserOptional.get().getBanCount() > 0) {
                 log.warn("강퇴 계정 로그인 시도: email={}, banCount={}", email, deletedUserOptional.get().getBanCount());
-                throw new CustomAuthenticationException("강퇴 계정입니다.");
+                throw new CustomException(ErrorCode.BANNED_USER);
             }
-            
-            throw new RuntimeException("이메일 또는 비밀번호가 일치하지 않습니다.");
+
+            throw new CustomException(ErrorCode.LOGIN_FAILED);
         }
 
         //비번검증
         if(!passwordEncoder.matches(password, loginUser.getPassword())){
-            throw new CustomAuthenticationException("이메일 또는 비밀번호를 확인해주세요.");
+            throw new CustomException(ErrorCode.LOGIN_FAILED);
         }
 
         //아메일 인증상태 검증
         if(loginUser.getAuthStatus() != AuthStatus.Y){
-            throw new CustomAuthenticationException("이메일 인증이 필요합니다.");
+            throw new CustomException(ErrorCode.EMAIL_NOT_VERIFIED);
         }
 
         // 정지 상태 체크/해제
@@ -69,13 +67,13 @@ public class AuthService {
                 log.info("정지 해제: userId={}, email={}", loginUser.getUserId(), email);
             } else {
                 // 정지 기간인 경우
-                throw new CustomAuthenticationException("정지 계정 // 정지해제일: " + loginUser.getSuspendedUntil());
+                throw new CustomException(ErrorCode.USER_SUSPENDED);
             }
         }
 
         // 강퇴 상태 체크
         if (loginUser.getDeletedAt() != null) {
-            throw new CustomAuthenticationException("강제 탈퇴 계정");
+            throw new CustomException(ErrorCode.BANNED_USER);
         }
 
         // 2. 로그인 성공 시 access/refresh 토큰 생성
@@ -111,12 +109,12 @@ public class AuthService {
     public AuthResponseDto reissue(String oldRefreshToken){
         //리프레시 토큰 유효성 검증
         if(!jwtProvider.validateToken(oldRefreshToken)){
-            throw new CustomAuthenticationException("유효하지 않은 토큰");
+            throw new CustomException(ErrorCode.INVALID_TOKEN);
         }
 
         //디비에서 토큰값으로 refresh entity 조회
         RefreshTokenEntity storedToken = refreshTokenService.findByTokenValue(oldRefreshToken)
-                .orElseThrow(()->new CustomAuthenticationException("유효하지 않은 토큰"));
+                .orElseThrow(()->new CustomException(ErrorCode.INVALID_TOKEN));
 
         UserEntity user = storedToken.getUser();
 
@@ -179,13 +177,13 @@ public class AuthService {
                 log.info("정지 해제: userId={}, email={}", loginUser.getUserId(), userEmail);
             } else {
                 // 정지 기간인 경우
-                throw new CustomAuthenticationException("정지 계정 // 정지해제일: " + loginUser.getSuspendedUntil());
+                throw new CustomException(ErrorCode.USER_SUSPENDED);
             }
         }
 
         // 강퇴 상태 체크
         if (loginUser.getDeletedAt() != null) {
-            throw new CustomAuthenticationException("강제 탈퇴 계정");
+            throw new CustomException(ErrorCode.BANNED_USER);
         }
 
         Long userId = loginUser.getUserId();
@@ -242,13 +240,13 @@ public class AuthService {
                 log.info("정지 해제: userId={}, email={}", loginUser.getUserId(), userEmail);
             } else {
                 // 정지 기간인 경우
-                throw new CustomAuthenticationException("정지 계정 // 정지해제일: " + loginUser.getSuspendedUntil());
+                throw new CustomException(ErrorCode.USER_SUSPENDED);
             }
         }
 
         // 강퇴 상태 체크
         if (loginUser.getDeletedAt() != null) {
-            throw new CustomAuthenticationException("강제 탈퇴 계정");
+            throw new CustomException(ErrorCode.BANNED_USER);
         }
 
         Long userId = loginUser.getUserId();
