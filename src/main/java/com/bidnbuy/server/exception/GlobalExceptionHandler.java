@@ -25,6 +25,11 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ErrorCode.INVALID_REQUEST);
     }
 
+    @ExceptionHandler(CustomException.class)
+    protected ResponseEntity<ErrorResponse> handleCustomException(CustomException ex) {
+        return handleExceptionInternal(ex.getExceptionCode());
+    }
+
     private ResponseEntity<ErrorResponse> handleExceptionInternal(ErrorCode errorCode) {
         return ResponseEntity
                 .status(errorCode.getHttpStatus().value())
