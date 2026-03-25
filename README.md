@@ -390,4 +390,8 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
   https://www.erdcloud.com/d/YXqSYq86nJmWGgMvj
 </details>
 
+<details>
+  <summary><b>배포</b></summary>
+  ![bidnbuy (2).jpg](../../Downloads/bidnbuy%20%282%29.jpg)
+</details>
 <br>

@@ -16,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -153,7 +152,7 @@ public class AuctionProductsService {
                 .map(com.bidnbuy.server.repository.projection.AuctionListProjection::getAuctionId)
                 .collect(Collectors.toList());
 
-        Set<Long> likedAuctionIds = new java.util.HashSet<>();
+        Set<Long> likedAuctionIds = new HashSet<>();
         if (userId != null && !auctionIds.isEmpty()) {
             // DB를 딱 한 번만 더 호출합니다.
             List<Long> likedIds = wishlistRepository.findLikedAuctionIdsByUserIdAndAuctionIds(userId, auctionIds);
@@ -163,12 +162,7 @@ public class AuctionProductsService {
         // 프로젝션 -> 응답 dto 매핑
         List<AuctionListResponseDto> dtoList = projectionPage.getContent().stream()
                 .map(p -> {
-                    // boolean liked = false;
-                     boolean liked = likedAuctionIds.contains(p.getAuctionId());
-
-                  //  if (userId != null) {
-                  //      liked = wishlistRepository.existsByUser_UserIdAndAuction_AuctionId(userId, p.getAuctionId());
-                  //  }
+                    boolean liked = likedAuctionIds.contains(p.getAuctionId());
 
                     return AuctionListResponseDto.builder()
                             .auctionId(p.getAuctionId())
@@ -206,7 +200,7 @@ public class AuctionProductsService {
 
         // 로그인한 유저가 찜했는지 확인
         boolean liked = false;
-        if(userId != null) {
+        if (userId != null) {
             liked = wishlistRepository.existsByUser_UserIdAndAuction_AuctionId(userId, auctionId);
         }
 

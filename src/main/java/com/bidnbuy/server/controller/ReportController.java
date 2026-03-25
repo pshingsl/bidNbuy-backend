@@ -1,11 +1,10 @@
 package com.bidnbuy.server.controller;
 
 import com.bidnbuy.server.dto.CreateReportRequestDto;
-import com.bidnbuy.server.dto.RatingRequest;
 import com.bidnbuy.server.dto.ReportListResponseDto;
 import com.bidnbuy.server.dto.ReportResponseDto;
 import com.bidnbuy.server.entity.InquiriesEntity;
-import com.bidnbuy.server.service.ReportSevice;
+import com.bidnbuy.server.service.ReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,12 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Tag(name = "신고 API", description = "신공 기능 제공")
 @RestController
@@ -29,7 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ReportController {
 
-    private final ReportSevice reportService;
+    private final ReportService reportService;
 
 
     // 신고 상세 조회
