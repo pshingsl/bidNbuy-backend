@@ -387,7 +387,9 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
 
 <details>
   <summary><b>ERD</b></summary>
-  https://www.erdcloud.com/d/YXqSYq86nJmWGgMvj
+
+  ![img_1.png](img_1.png)
+  ![img_2.png](img_2.png)
 </details>
 
 <details>
