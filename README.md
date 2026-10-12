@@ -17,7 +17,12 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
 
 ## 🗓️ 개발 기간
 
-2025.09.24. ~ 2025.11.05.
+2025.09.24 ~ 2025.11.05
+
+## 해결하고자 한 문제
+1.
+2.
+3.
 <br><br>
 
 ## 👥 팀 구성
@@ -165,7 +170,22 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
 
 <img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudio&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> <img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 
-<br>
+## 아키텍처 및 ERD
+
+### 아키텍처 구성도
+
+![bidnbuy (2).jpg](bidnbuy%20%282%29.jpg)
+
+### ERD
+
+https://www.erdcloud.com/d/YXqSYq86nJmWGgMvj
+
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+
+### 테이블 및 기능 요구사항 명세서 
+
+[링크](https://docs.google.com/spreadsheets/d/1tiiuyDQZtwt7OPu5pqWtwo_Ot8-M8TjxheeOr6L5Mzs/edit?usp=sharing)
 
 ## ✨ 주요 기능
 
@@ -222,7 +242,15 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
 
 <br>
 
+## 트러블슈팅
+[1. 상품 목록 조회 성능 최적화](troubleshooting/Product.md) <br>
+[2. 입찰 동시성 제어](troubleshooting/Lock.md) <br>
+[3. 로그인 직후 인증이 풀리는 현상](troubleshooting/Auth.md) <br>
+
 ## 🔍 기능 설명
+
+<details> 
+  <summary>기능 설명</summary>
 
 ### 회원가입 & 로그인
 
@@ -375,32 +403,4 @@ Bid&Buy는 경매의 합리성과 거래의 안전함을 갖춘 차별화된 중
     <img src="https://github.com/user-attachments/assets/03aac759-559c-49aa-8bb7-04ae561e5b90">
 </details>
 
-<br>
-
-
-## 📄 관련 문서
-
-<details>
-  <summary><b>테이블/기능 요구사항 명세서</b></summary>
-
-  https://docs.google.com/spreadsheets/d/1tiiuyDQZtwt7OPu5pqWtwo_Ot8-M8TjxheeOr6L5Mzs/edit?usp=sharing
-
-</details>
-
-<details>
-  <summary><b>ERD</b></summary>
-
-  https://www.erdcloud.com/d/YXqSYq86nJmWGgMvj
-
-  ![img_1.png](img_1.png)
-  ![img_2.png](img_2.png)
-</details>
-
-<details>
-  <summary><b>아키텍처</b></summary>
-
-![bidnbuy (2).jpg](bidnbuy%20%282%29.jpg)
-
-</details>
-
-<br>
+</details> 
