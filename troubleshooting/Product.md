@@ -113,6 +113,6 @@ boolean liked = likedAuctionIds.contains(p.getAuctionId());
 | 지표       | 개선 전    | 개선 후 | 변화 |
 |:---------|:--------|:-----|----|
 | 평균 응답 시간 | 42ms    | 25ms | 약 40% 단축|
-| 최대 응답 시간 | 1,240ms | 36MS | 약 97% 감소|
+| 최대 응답 시간 | 1,240ms | 36ms | 약 97% 감소|
 
 ![img_1.png](img_1.png)
